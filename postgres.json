@@ -1,0 +1,9 @@
+{
+  "name": "RDS PostgreSQL",
+  "driver": "PostgreSQL",
+  "server": "database-1.c7gic4mye0s7.us-east-1.rds.amazonaws.com",
+  "port": 5432,
+  "database": "",
+  "username": "postgres",
+  "password": "domBHqH2m9XqsFtfZbYt"
+}
