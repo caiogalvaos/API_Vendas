@@ -1,10 +1,11 @@
 package com.vendasApi.DTO;
 
+import java.math.BigDecimal;
+
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.math.BigDecimal;
 
 public class ProdutoDTO {
 
@@ -23,6 +24,12 @@ public class ProdutoDTO {
 
     public ProdutoDTO(Long id, String nome, BigDecimal preco) {
         this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+    }
+
+    // Novo construtor
+    public ProdutoDTO(String nome, BigDecimal preco) {
         this.nome = nome;
         this.preco = preco;
     }

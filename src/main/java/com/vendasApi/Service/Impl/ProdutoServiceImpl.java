@@ -1,18 +1,17 @@
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.vendasApi.DTO.ProdutoDTO;
-import com.vendasApi.Entity.ProdutosEntity;
-import com.vendasApi.Repository.ProdutoRepository;
-import com.vendasApi.Service.ProdutoService;
+package com.vendasApi.Service.Impl;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-package com.vendasApi.Service.Impl;
-
-
+import com.vendasApi.DTO.ProdutoDTO;
+import com.vendasApi.Entity.ProdutosEntity;
+import com.vendasApi.Repository.ProdutoRepository;
+import com.vendasApi.Service.ProdutoService;
 
 @Service
 public class ProdutoServiceImpl implements ProdutoService {
@@ -57,7 +56,7 @@ public class ProdutoServiceImpl implements ProdutoService {
             ProdutosEntity produtoAtualizadoEntity = produtoRepository.save(produto);
             return convertToDTO(produtoAtualizadoEntity);
         } else {
-            throw new RuntimeException("Produto com ID " + id + " não encontrado para atualização.");
+            return null;
         }
     }
 
@@ -65,17 +64,11 @@ public class ProdutoServiceImpl implements ProdutoService {
     public void deletarProduto(Long id) {
         if (produtoRepository.existsById(id)) {
             produtoRepository.deleteById(id);
-        } else {
-            throw new RuntimeException("Produto com ID " + id + " não encontrado para exclusão.");
         }
     }
 
-    // Métodos de conversão entre ProdutoDTO e ProdutosEntity
+    // Método de conversão entre ProdutoDTO e ProdutosEntity
     private ProdutoDTO convertToDTO(ProdutosEntity produto) {
         return new ProdutoDTO(produto.getId(), produto.getNome(), produto.getPreco());
-    }
-
-    private ProdutosEntity convertToEntity(ProdutoDTO produtoDTO) {
-        return new ProdutosEntity(produtoDTO.getNome(), produtoDTO.getPreco());
     }
 }

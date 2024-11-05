@@ -1,7 +1,8 @@
 package com.vendasApi.Service;
 
-import com.vendasApi.DTO.ProdutoDTO;
 import java.util.List;
+
+import com.vendasApi.DTO.ProdutoDTO;
 
 public interface ProdutoService {
     void cadastrarProduto(ProdutoDTO produto);

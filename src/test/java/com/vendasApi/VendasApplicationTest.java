@@ -1,12 +1,11 @@
 package com.vendasApi;
 
-import com.vendasApi.Controller.CadastroDeProdutosController;
-import com.vendasApi.DTO.ProdutoDTO;
-import com.vendasApi.Service.ProdutoService;
+import java.math.BigDecimal;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +16,13 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.math.BigDecimal;
-
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vendasApi.Controller.CadastroDeProdutosController;
+import com.vendasApi.DTO.ProdutoDTO;
+import com.vendasApi.Service.ProdutoService;
 
 @ExtendWith({SpringExtension.class, MockitoExtension.class})
 @WebMvcTest(CadastroDeProdutosController.class)
@@ -49,7 +49,7 @@ public class VendasApplicationTest {
     void deveCadastrarNovoProdutoComSucesso() throws Exception {
         ProdutoDTO produtoDTO = new ProdutoDTO("Produto Teste", BigDecimal.valueOf(100.00));
 
-        Mockito.doNothing().when(produtoService).CadastrarProduto(produtoDTO);
+        Mockito.doNothing().when(produtoService).cadastrarProduto(produtoDTO);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/produtos")
                 .contentType(MediaType.APPLICATION_JSON)
